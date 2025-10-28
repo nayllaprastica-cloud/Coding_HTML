@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nayla Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <style>
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8) rotate(-5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+.animate-popIn {
+  animation: popIn 1s ease-out 0.0s forwards;
+html {
+    scroll-behavior: smooth;
+  }
+}
+</style>
+  <header class="bg-rose-200 shadow-xl fixed w-full top-0 z-10">
+      <div class="max-w-6xl mx-auto flex justify-between items-center p-4 sm:px-8">
+            <h1 class="text-2xl text-pink-500 font-sans uppercase tracking-widest">Naylla Aura</h1>
+            <ul class="hidden md:flex space-x-8 text-orange-400 font-medium tracking-wider">
+              <li><a href="#home" class="hover:text-pink-500 transition duration-150">HOME</a></li>
+              <li><a href="#about" class="hover:text-pink-500 transition duration-150">ABOUT ME</a></li>
+              <li><a href="#portfolio" class="hover:text-pink-500 transition duration-150">MY PORTFOLIO</a></li>
+              <li><a href="#contact" class="hover:text-pink-500 transition duration-150">CONTACT</a></li>
+            </ul>
+            <button id="menu" class="md:hidden text-2xl text-purple-700">&#9776;</button>
+    
+        </div>
+    </header>
+
+  <body class="bg-rose-200 text-white overflow-x-hidden">
+    <!-- ================== SECTION 1: INTRO ================== -->
+   <section id="home" class="pt-24">
+  <div class="relative w-full h-[400px] bg-gradient-to-r from-pink-200 to-orange-200 flex items-center justify-center overflow-hidden rounded-2xl shadow-lg">
+    <div class="flex items-center gap-9">
+    <img src="public/img/gambar_bunga.png" 
+       alt="bunga kiri"
+       class="w-32 h-32 rounded-full animate-popIn">
+   <h1 class="text-pink-500 text-7xl font-serif text-center animate-fadeIn">
+    Hi! <br> it's Naylla
+  </h1>
+  <img src="public/img/gambar_bunga.png" 
+       alt="bunga kanan"
+       class="w-32 h-32 rounded-full animate-popIn">
+</div>
+</div>
+</section>
+
+    <!-- ================== SECTION 2: ABOUT ME / SLIDER ================== -->
+    <section
+      class="min-h-screen flex flex-col justify-center items-center bg-rose-100 relative px-6"
+    >
+      <h2 class="text-5xl font-bold mb-10  text-pink-500">About Me</h2>
+
+      <div
+        class="relative w-full max-w-5xl flex items-center justify-center overflow-hidden"
+      >
+        <!-- Tombol -->
+        <button
+          id="prevAbout"
+          class="absolute left-3 z-10 bg-black/10 hover:bg-white/20 text-white text-2xl rounded-full p-3"
+        >
+          ❮
+        </button>
+        <button
+          id="nextAbout"
+          class="absolute right-3 z-10 bg-black/10 hover:bg-white/20 text-white text-2xl rounded-full p-3"
+        >
+          ❯
+        </button>
+
+        <!-- Slider Container -->
+        <div
+          id="aboutSlider"
+          class="flex transition-transform duration-700 ease-in-out w-full"
+        >
+          <!-- Slide 1: Deskripsi Diri -->
+          <div
+            class="min-w-full flex flex-col lg:flex-row items-center justify-center px-6"
+          >
+            <img
+              src="public/img/1.jpg"
+              alt="Foto Diri"
+              class="w-60 h-60 rounded-full object-cover shadow-lg shadow-blue-400/30 mb-6 lg:mb-0 lg:mr-10"
+            />
+            <div class="max-w-md text-center lg:text-left">
+              <h3 class="text-2xl font-semibold mb-3 text-pink-500">Hello! I'm Naylla</h3>
+              <p class="text-purple-700">
+                I love challenging myself with new things and using creativity 
+                as a way to continuously grow. 
+                For me, challenges aren't obstacles, but pathways to discovering the best version of myself. 
+                I enjoy experimenting, learning new things, and creating something meaningful.
+              </p>
+            </div>
+          </div>
+
+          <!-- Slide 2: Kontak -->
+          <div
+            class="min-w-full flex flex-col lg:flex-row items-center justify-center px-6"
+          >
+            <img
+              src="public/img/2.jpg"
+              alt="Kontak"
+              class="w-60 h-60 rounded-full object-cover shadow-lg shadow-pink-400/30 mb-6 lg:mb-0 lg:mr-10"
+            />
+            <div class="max-w-md text-center lg:text-left">
+              <h3 class="text-2xl font-semibold mb-3 text-pink-500">Contact Me</h3>
+              <p class="mb-4 text-orange-500">
+                Contact me in:
+              </p>
+              <ul class="space-y-2">
+                <li class="text-slate-900">
+                  📧 Email: <span class="text-slate-900">nayllaprastica@gmail.com</span>
+                </li>
+                <li class="text-slate-900">
+                  📱 WhatsApp: <span class="text-slate-900">081234587083</span>
+                </li>
+                <li class="text-slate-900">
+                  💼 Instagram: <span class="text-slate-900">@naylla_aura</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.getElementById("aboutSlider");
+        const next = document.getElementById("nextAbout");
+        const prev = document.getElementById("prevAbout");
+        let index = 0;
+
+        function showSlide(i) {
+          slider.style.transform = `translateX(-${i * 100}%)`;
+        }
+
+        next.addEventListener("click", () => {
+          index = (index + 1) % 2;
+          showSlide(index);
+        });
+
+        prev.addEventListener("click", () => {
+          index = (index - 1 + 2) % 2;
+          showSlide(index);
+        });
+      });
+    </script>
+
+    <!-- ================== SECTION 3: PORTOFOLIO ================== -->
+    <!-- Container -->
+    <section id="portofolio" class="pt-36 pb-16 for-bg">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-8">
+          <h4 class="text-3xl lg:text-4xl font-medium text-pink-500">
+            <span class="text-primary font-light mr-2">02.</span> My Portofolio
+          </h4>
+        </div>
+
+        <!-- Carousel -->
+<div class="relative">
+  <!-- Viewport (menyembunyikan slide lain di luar layar) -->
+  <div id="carouselViewport" class="overflow-hidden relative rounded-xl">
+    <!-- Track (menyusun slide secara horizontal) -->
+    <div
+      id="carouselTrack"
+      class="flex transition-transform duration-500 ease-in-out"
+      style="width: 500%;"
+    >
+      <!-- Slide 1 -->
+      <div class="carousel-slide shrink-0 w-full px-4 box-border">
+        <div class="rounded-xl overflow-hidden shadow-xl shadow-blue-500/30">
+          <img
+            src="public/img/6.jpg"
+            alt="Portfolio Website"
+            class="w-full h-64 md:h-72 xl:h-80 object-cover"
+          />
+        </div>
+        <h3 class="mt-5 text-xl font-semibold text-pink-500">1. Portfolio Website</h3>
+        <p class="text-slate-900">
+          A responsive website built using HTML, TailwindCSS, and a bit of JavaScript.
+        </p>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide shrink-0 w-full px-4 box-border">
+        <div class="rounded-xl overflow-hidden shadow-xl shadow-blue-500/30">
+          <img
+            src="public/img/7.jpg"
+            alt="Mobile App"
+            class="w-full h-64 md:h-72 xl:h-80 object-cover"
+          />
+        </div>
+        <h3 class="mt-5 text-xl font-semibold text-pink-500">2. Mobile App Prototype</h3>
+        <p class="text-slate-900">
+          A Figma-based productivity app prototype with animations.
+        </p>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide shrink-0 w-full px-4 box-border">
+        <div class="rounded-xl overflow-hidden shadow-xl shadow-blue-500/30">
+          <img
+            src="public/img/3.jpg"
+            alt="Dashboard"
+            class="w-full h-64 md:h-72 xl:h-80 object-cover"
+          />
+        </div>
+        <h3 class="mt-5 text-xl font-semibold text-pink-500">3. Dashboard Interface</h3>
+        <p class="text-slate-900">
+          A modern analytics dashboard with visual charts and graphs.
+        </p>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="carousel-slide shrink-0 w-full px-4 box-border">
+        <div class="rounded-xl overflow-hidden shadow-xl shadow-blue-500/30">
+          <img
+            src="public/img/4.jpg"
+            alt="E-commerce"
+            class="w-full h-64 md:h-72 xl:h-80 object-cover"
+          />
+        </div>
+        <h3 class="mt-5 text-xl font-semibold text-pink-500">4. E-Commerce Website</h3>
+        <p class="text-slate-900">
+          A clean, responsive online shop interface with filter features.
+        </p>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="carousel-slide shrink-0 w-full px-4 box-border">
+        <div class="rounded-xl overflow-hidden shadow-xl shadow-blue-500/30">
+          <img
+            src="public/img/8.jpg"
+            alt="Creative Illustration"
+            class="w-full h-64 md:h-72 xl:h-80 object-cover"
+          />
+        </div>
+        <h3 class="mt-5 text-xl font-semibold text-pink-500">5. Creative Illustration</h3>
+        <p class="text-slate-900">
+          A digital art and illustration showcase made in Illustrator and Procreate.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+        <!-- Controls -->
+          <button
+            id="prevBtn"
+            aria-label="Previous"
+            class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 rounded-full backdrop-blur-md z-20"
+          >
+            ❮
+          </button>
+          <button
+            id="nextBtn"
+            aria-label="Next"
+            class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 rounded-full backdrop-blur-md z-20"
+          >
+            ❯
+          </button>
+
+          <!-- Dots -->
+          <div id="dots" class="flex gap-2 justify-center mt-6"></div>
+
+          <!-- small hint for drag on mobile -->
+          <p class="text-center text-sm text-slate-400 mt-4">
+            Drag or use the arrows — autoplay aktif
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Script: advanced carousel -->
+    <script>
+      (function () {
+        const track = document.getElementById("carouselTrack");
+        const viewport = document.getElementById("carouselViewport");
+        const slidesOriginal = Array.from(track.children);
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const dotsContainer = document.getElementById("dots");
+
+        // Settings
+        const autoplayDelay = 3000; // ms
+        const transitionDuration = 500; // ms, match Tailwind duration-500
+        let autoplayTimer = null;
+        let isTransitioning = false;
+        let pointerActive = false;
+
+        // responsive visible slides: 1 on small, 2 on md (>=768), 3 on xl (>=1280)
+        function getVisibleCount() {
+          const w = window.innerWidth;
+          if (w >= 1280) return 3;
+          if (w >= 768) return 2;
+          return 1;
+        }
+
+        // build clones for infinite loop: clone last N to front and first N to end
+        let clonesBefore = [],
+          clonesAfter = [];
+        function buildClones() {
+          // remove existing clones if any
+          clonesBefore.forEach((n) => n.remove());
+          clonesAfter.forEach((n) => n.remove());
+          clonesBefore = [];
+          clonesAfter = [];
+
+          const visible = getVisibleCount();
+          const slides = Array.from(slidesOriginal);
+          const len = slides.length;
+
+          // clone last visible slides to front
+          for (let i = len - visible; i < len; i++) {
+            const clone = slides[i].cloneNode(true);
+            clone.classList.add("clone");
+            track.insertBefore(clone, track.firstChild);
+            clonesBefore.push(clone);
+          }
+          // clone first visible slides to end
+          for (let i = 0; i < visible; i++) {
+            const clone = slides[i].cloneNode(true);
+            clone.classList.add("clone");
+            track.appendChild(clone);
+            clonesAfter.push(clone);
+          }
+        }
+
+        // sizing: set slide width to viewport / visibleCount
+        function setSizes() {
+          const visible = getVisibleCount();
+          const vw = viewport.clientWidth;
+          const slideWidth = vw / visible;
+          const slides = Array.from(track.children);
+          slides.forEach((sl) => {
+            sl.style.minWidth = slideWidth + "px";
+            sl.style.maxWidth = slideWidth + "px";
+          });
+        }
+
+        // position track to the real-first slide (after clones)
+        let index = 0; // index of current real slide (0..n-1)
+        function jumpToIndex(i, instant = false) {
+          const visible = getVisibleCount();
+          const slideWidth = track.children[0].clientWidth;
+          // position = (i + clonesBefore.length) * slideWidth * -1
+          const offsetIndex = i + clonesBefore.length;
+          const x = -offsetIndex * slideWidth;
+          if (instant) {
+            track.style.transition = "none";
+          } else {
+            track.style.transition = `transform ${transitionDuration}ms ease`;
+          }
+          track.style.transform = `translateX(${x}px)`;
+          if (instant) {
+            // allow browser to apply transform without transition, then restore transition
+            setTimeout(() => {
+              track.style.transition = `transform ${transitionDuration}ms ease`;
+            }, 20);
+          }
+          index = i;
+          updateDots();
+        }
+
+        // when moving to next/prev, handle loop corrections after transition
+        function moveTo(i) {
+          if (isTransitioning) return;
+          isTransitioning = true;
+          const len = slidesOriginal.length;
+          // animate to i
+          jumpToIndex(i, false);
+
+          setTimeout(() => {
+            // if we moved past end, jump to real item without animation
+            if (i >= len) {
+              const wrapped = i % len;
+              jumpToIndex(wrapped, true);
+              index = wrapped;
+            }
+            // if moved before 0 (negative)
+            if (i < 0) {
+              const wrapped = ((i % len) + len) % len;
+              jumpToIndex(wrapped, true);
+              index = wrapped;
+            }
+            isTransitioning = false;
+          }, transitionDuration + 10);
+        }
+
+        // controls
+        function next() {
+          const len = slidesOriginal.length;
+          moveTo(index + 1);
+        }
+        function prev() {
+          moveTo(index - 1);
+        }
+
+        // dots
+        function buildDots() {
+          dotsContainer.innerHTML = "";
+          slidesOriginal.forEach((_, i) => {
+            const btn = document.createElement("button");
+            btn.className = "w-3 h-3 rounded-full bg-white/30";
+            btn.setAttribute("aria-label", "Go to slide " + (i + 1));
+            btn.addEventListener("click", () => {
+              resetAutoplay();
+              moveTo(i);
+            });
+            dotsContainer.appendChild(btn);
+          });
+          updateDots();
+        }
+        function updateDots() {
+          const dots = Array.from(dotsContainer.children);
+          dots.forEach((d, idx) => {
+            if (idx === index) {
+              d.classList.remove("bg-white/30");
+              d.classList.add("bg-white");
+            } else {
+              d.classList.add("bg-white/30");
+              d.classList.remove("bg-white");
+            }
+          });
+        }
+
+        // autoplay
+        function startAutoplay() {
+          stopAutoplay();
+          autoplayTimer = setInterval(() => {
+            next();
+          }, autoplayDelay);
+        }
+        function stopAutoplay() {
+          if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+          }
+        }
+        function resetAutoplay() {
+          stopAutoplay();
+          startAutoplay();
+        }
+
+        // drag support (pointer events)
+        function enableDrag() {
+          let startX = 0;
+          let currentTranslate = 0;
+          let prevTranslate = 0;
+          let dragging = false;
+          const trackEl = track;
+
+          trackEl.addEventListener("pointerdown", (e) => {
+            pointerActive = true;
+            dragging = true;
+            startX = e.clientX;
+            prevTranslate = getCurrentTranslate();
+            trackEl.style.transition = "none";
+            trackEl.setPointerCapture(e.pointerId);
+            stopAutoplay();
+          });
+
+          trackEl.addEventListener("pointermove", (e) => {
+            if (!dragging) return;
+            const dx = e.clientX - startX;
+            currentTranslate = prevTranslate + dx;
+            trackEl.style.transform = `translateX(${currentTranslate}px)`;
+          });
+
+          trackEl.addEventListener("pointerup", (e) => {
+            if (!dragging) return;
+            trackEl.releasePointerCapture(e.pointerId);
+            dragging = false;
+            pointerActive = false;
+            trackEl.style.transition = `transform ${transitionDuration}ms ease`;
+            // determine if we should go to next or prev by threshold
+            const dx = e.clientX - startX;
+            const threshold = track.children[0].clientWidth * 0.25;
+            if (dx < -threshold) {
+              // moved left => next
+              next();
+            } else if (dx > threshold) {
+              prev();
+            } else {
+              // restore current
+              jumpToIndex(index, false);
+            }
+            resetAutoplay();
+          });
+
+          // also cancel on leave or cancel
+          ["pointercancel", "pointerleave"].forEach((ev) => {
+            trackEl.addEventListener(ev, (e) => {
+              if (!dragging) return;
+              dragging = false;
+              pointerActive = false;
+              trackEl.style.transition = `transform ${transitionDuration}ms ease`;
+              jumpToIndex(index, false);
+              resetAutoplay();
+            });
+          });
+
+          // helper to read computed translateX
+          function getCurrentTranslate() {
+            const st = window.getComputedStyle(trackEl);
+            const mt = st.transform || st.webkitTransform;
+            if (mt && mt !== "none") {
+              const values = mt.split("(")[1].split(")")[0].split(",");
+              const tx = parseFloat(values[4]);
+              return tx;
+            }
+            return 0;
+          }
+        }
+
+        // keyboard nav
+        function enableKeyboard() {
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight") {
+              resetAutoplay();
+              next();
+            } else if (e.key === "ArrowLeft") {
+              resetAutoplay();
+              prev();
+            }
+          });
+        }
+
+        // Re-init on resize (rebuild clones, sizes, and place to correct index)
+        let resizeObserver = null;
+        function initResizeObserver() {
+          if (resizeObserver) resizeObserver.disconnect();
+          resizeObserver = new ResizeObserver(() => {
+            // store logical index and re-calc everything
+            const currentIndex = index;
+            buildClones();
+            setSizes();
+            // after rebuild, jump to currentIndex (instant)
+            jumpToIndex(currentIndex, true);
+          });
+          resizeObserver.observe(viewport);
+          window.addEventListener("resize", () => {
+            // fallback if ResizeObserver not supported
+            setTimeout(() => {
+              buildClones();
+              setSizes();
+              jumpToIndex(index, true);
+            }, 50);
+          });
+        }
+
+        // initialization
+        function init() {
+          buildClones();
+          setSizes();
+          // initial index 0 => jump to first real slide (after clones)
+          jumpToIndex(0, true);
+          buildDots();
+          startAutoplay();
+          enableDrag();
+          enableKeyboard();
+
+          nextBtn.addEventListener("click", () => {
+            resetAutoplay();
+            next();
+          });
+          prevBtn.addEventListener("click", () => {
+            resetAutoplay();
+            prev();
+          });
+
+          // pause on hover/focus
+          viewport.addEventListener("mouseenter", () => stopAutoplay());
+          viewport.addEventListener("mouseleave", () => startAutoplay());
+          viewport.addEventListener("focusin", () => stopAutoplay());
+          viewport.addEventListener("focusout", () => startAutoplay());
+
+          initResizeObserver();
+        }
+
+        // wait for images to load to compute sizes properly
+        function awaitImagesLoaded() {
+          const imgs = Array.from(track.querySelectorAll("img"));
+          const promises = imgs.map((img) => {
+            if (img.complete) return Promise.resolve();
+            return new Promise((res) => img.addEventListener("load", res));
+          });
+          return Promise.all(promises);
+        }
+
+        // kick off
+        awaitImagesLoaded().then(() => {
+          init();
+        });
+      })();
+    </script>
+  </body>
+</html>
